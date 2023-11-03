@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qubitpi</groupId>
-    <artifactId>jersey-webservice-template-elide-data-model</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>jersey-webservice-template-jpa-data-model</artifactId>
+    <version>1.0.0</version>
 
-    <name>jersey-webservice-template-elide-data-model</name>
+    <name>jersey-webservice-template-jpa-data-model</name>
     <packaging>jar</packaging>
-    <url>https://github.com/QubitPi/jersey-webservice-template-elide-data-model</url>
+    <url>https://github.com/QubitPi/jersey-webservice-template-jpa-data-model</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

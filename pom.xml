@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qubitpi</groupId>
-    <artifactId>jersey-webservice-template-jpa-data-model</artifactId>
+    <artifactId>jersey-webservice-template-jpa-data-models</artifactId>
     <version>1.0.0</version>
 
-    <name>jersey-webservice-template-jpa-data-model</name>
+    <name>jersey-webservice-template-jpa-data-models</name>
     <packaging>jar</packaging>
-    <url>https://github.com/QubitPi/jersey-webservice-template-jpa-data-model</url>
+    <url>https://github.com/QubitPi/jersey-webservice-template-jpa-data-models</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -19,6 +19,8 @@ name: Data Model CI/CD
   push:
     branches:
       - master
+  repository_dispatch:
+    types: [jersey-webservice-template-jpa-elide-changes]
 
 jobs:
   ci-cd:

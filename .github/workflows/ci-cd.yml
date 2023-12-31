@@ -20,22 +20,13 @@ name: Data Model CI/CD
     branches:
       - master
 
-env:
-  JDK_VERSION: 17
-  JDK_DISTRIBUTION: 'adopt'
-
 jobs:
   ci-cd:
     name: Data Model CI/CD
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Set up JDK ${{ env.JDK_VERSION }}
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ env.JDK_VERSION }}
-          distribution: ${{ env.JDK_DISTRIBUTION }}
+      - name: Setup JDK
+        uses: QubitPi/hashicorp-aws/auxiliary/github/actions/jdk-setup@master
       - name: Test
         run: mvn -B clean verify

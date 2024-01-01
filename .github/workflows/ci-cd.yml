@@ -42,6 +42,6 @@ jobs:
       - name: Trigger data model acceptance tests CI/CD
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.JWT_JPA_DATA_MODEL_ACCEPT_TESTS }}
+          token: ${{ secrets.JWT_JPA_DATA_MODEL_ACCEPT_TESTS_TRIGGER }}
           repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
           event-type: jersey-webservice-template-jpa-data-model-changes

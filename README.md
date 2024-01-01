@@ -3,10 +3,16 @@ Jersey Webservice Template JPA Data Model Examples
 
 ![Java Version Badge][Java Version Badge]
 [![GitHub Workflow Status][GitHub Workflow Status]](https://github.com/QubitPi/jersey-webservice-template-jpa-data-models/actions/workflows/ci-cd.yml)
+[![GitHub Actions Badge](https://img.shields.io/badge/GitHub%20Actions%20CI/CD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/QubitPi/jersey-webservice-template-jpa-data-models/actions/workflows/ci-cd.yml)
 [![Apache License Badge]](https://www.apache.org/licenses/LICENSE-2.0)
 
 This example project serves as an example of how to define [JPA Data Model for JWT]; there also comes with a
 production-ready [test framework] to make sure the model compiles with business requirements.
+
+Its CI/CD, as part of this template, will trigger the CI/CD of [test framework] as well to make them a standard
+pipeline. See
+[Jersey Webservice Template documentation](https://qubitpi.github.io/jersey-webservice-template/docs/elide/configuration#cicd-chain)
+on how to configure.
 
 License
 -------

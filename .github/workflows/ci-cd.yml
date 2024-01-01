@@ -23,7 +23,7 @@ name: Data Model CI/CD
     types: [jersey-webservice-template-jpa-elide-changes]
 
 jobs:
-  ci-cd:
+  tests:
     name: Data Model CI/CD
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +32,16 @@ jobs:
         uses: QubitPi/hashicorp-aws/auxiliary/github/actions/jdk-setup@master
       - name: Test
         run: mvn -B clean verify
+
+  triggering:
+    name: Triggering data model acceptance tests CI/CD
+    needs: tests
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger data model acceptance tests CI/CD
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.JWT_JPA_DATA_MODEL_ACCEPT_TESTS }}
+          repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
+          event-type: jersey-webservice-template-jpa-data-model-changes

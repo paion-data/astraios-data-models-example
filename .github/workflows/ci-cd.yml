@@ -25,16 +25,32 @@ name: Data Model CI/CD
 jobs:
   tests:
     name: Data Model CI/CD
+    outputs:
+      outcome: ${{ job.status }}
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup JDK
-        uses: QubitPi/hashicorp-aws/auxiliary/github/actions/jdk-setup@master
+        uses: QubitPi/jersey-webservice-deployment-actions/.github/actions/jdk-setup@master
       - name: Test
         run: mvn -B clean verify
 
+  slack-notification-pr:
+    name: Send Slack Notification
+    if: ${{ (github.event_name == 'pull_request') && always() }}
+    needs: tests
+    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
+    with:
+      job-status: ${{ needs.tests.outputs.outcome }}
+    secrets:
+      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+
   triggering:
     name: Triggering data model acceptance tests CI/CD
+    outputs:
+      outcome: ${{ job.status }}
+    continue-on-error: true
     needs: tests
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
@@ -45,3 +61,13 @@ jobs:
           token: ${{ secrets.JWT_DOWNSTREAM_CICD_TRIGGER_TOKEN }}
           repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
           event-type: jersey-webservice-template-jpa-data-model-changes
+
+  slack-notification-master-commit:
+    name: Send Slack Notification
+    if: ${{ (github.ref == 'refs/heads/master') && always() }}
+    needs: triggering
+    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
+    with:
+      job-status: ${{ needs.triggering.outputs.outcome }}
+    secrets:
+      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}

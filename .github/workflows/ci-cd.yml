@@ -1,4 +1,4 @@
-# Copyright 2024 Jiaqi Liu
+# Copyright 2024 Paion Data
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,28 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-name: Data Model CI/CD
+name: CI/CD
 
 "on":
   pull_request:
   push:
     branches:
       - master
-  repository_dispatch:
-    types: [jersey-webservice-template-jpa-elide-changes]
 
 jobs:
-  yml-md-style-and-link-checks:
-    uses: QubitPi/hashicorp-aws/.github/workflows/yml-md-style-and-link-checks.yml@master
+#  yml-md-style-and-link-checks:
+#    uses: paion-data/immutable-infrastructure-as-a-service/.github/workflows/yml-md-style-and-link-checks.yml@master
 
   tests:
-    name: Testing install
-    needs: yml-md-style-and-link-checks
+    name: Test build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK
-        uses: QubitPi/hashicorp-aws/.github/actions/jdk-setup@master
+        uses: paion-data/immutable-infrastructure-as-a-service/.github/actions/jdk-setup@master
       - name: Test
         run: mvn -B clean install
 
@@ -44,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release
-        uses: QubitPi/maven-central-release-action@master
+        uses: paion-data/maven-central-release-action@master
         with:
           user: QubitPi
           email: jack20220723@gmail.com
@@ -53,16 +50,3 @@ jobs:
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
           server-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           server-password: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
-
-  triggering:
-    name: Triggering data model acceptance tests CI/CD
-    needs: release
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger data model acceptance tests CI/CD
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.JWT_DOWNSTREAM_CICD_TRIGGER_TOKEN }}
-          repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
-          event-type: jersey-webservice-template-jpa-data-model-changes

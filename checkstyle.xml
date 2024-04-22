@@ -140,7 +140,7 @@
         <module name="JavadocMethod">
             <property name="allowedAnnotations" value="Override"/>
             <property name="validateThrows" value="true"/>
-            <property name="scope" value="anoninner"/>
+            <property name="accessModifiers" value="public, protected, package, private"/>
             <property name="allowMissingParamTags" value="false"/>
             <property name="allowMissingReturnTag" value="false"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
@@ -178,6 +178,20 @@
         <module name="MissingJavadocType">
             <property name="scope" value="anoninner"/>
             <property name="tokens" value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF"/>
+            <property name="severity" value="error"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="severity" value="error"/>
+            <property name="allowMissingPropertyJavadoc" value="false"/>
+            <property name="scope" value="anoninner"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
+        </module>
+        <module name="MissingJavadocPackage">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="MissingJavadocType">
+            <property name="scope" value="anoninner"/>
+            <property name="tokens" value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF"/>
             <property name="severity" value="error"/>
         </module>
         <module name="NonEmptyAtclauseDescription">
@@ -385,9 +399,9 @@
         </module>
     </module>
     <!-- Headers -->
-    <module name="Header">
-        <property name="header" value="/*\n * Copyright Jiaqi Liu"/>
-        <property name="fileExtensions" value="java,groovy,g4" />
+    <module name="RegexpHeader">
+        <property name="header" value="/*\n * Copyright 20[0-2][0-9],? Paion Data"/>
+        <property name="fileExtensions" value="java,groovy" />
         <property name="severity" value="error"/>
     </module>
 

@@ -1,4 +1,4 @@
-# Copyright Jiaqi Liu
+# Copyright 2024 Paion Data
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,62 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-name: Data Model CI/CD
+name: Astraios Data Models Example CI/CD
 
 "on":
   pull_request:
   push:
     branches:
       - master
-  repository_dispatch:
-    types: [jersey-webservice-template-jpa-elide-changes]
 
 jobs:
   tests:
-    name: Data Model CI/CD
-    outputs:
-      outcome: ${{ job.status }}
-    continue-on-error: true
+    name: Test build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup JDK
-        uses: QubitPi/jersey-webservice-deployment-actions/.github/actions/jdk-setup@master
+        uses: paion-data/github-actions-core/.github/actions/jdk-setup@master
       - name: Test
-        run: mvn -B clean verify
-
-  slack-notification-pr:
-    name: Send Slack Notification
-    if: ${{ (github.event_name == 'pull_request') && always() }}
-    needs: tests
-    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
-    with:
-      job-status: ${{ needs.tests.outputs.outcome }}
-    secrets:
-      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  triggering:
-    name: Triggering data model acceptance tests CI/CD
-    outputs:
-      outcome: ${{ job.status }}
-    continue-on-error: true
-    needs: tests
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger data model acceptance tests CI/CD
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.JWT_DOWNSTREAM_CICD_TRIGGER_TOKEN }}
-          repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
-          event-type: jersey-webservice-template-jpa-data-model-changes
-
-  slack-notification-master-commit:
-    name: Send Slack Notification
-    if: ${{ (github.ref == 'refs/heads/master') && always() }}
-    needs: triggering
-    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
-    with:
-      job-status: ${{ needs.triggering.outputs.outcome }}
-    secrets:
-      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: mvn -B clean package

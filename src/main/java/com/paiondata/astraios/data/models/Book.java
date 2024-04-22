@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Jiaqi Liu
+ * Copyright 2024 Paion Data
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.qubitpi.ws.jersey.template.models;
+package com.paiondata.astraios.data.models;
 
-import com.yahoo.elide.annotation.Include;
+import com.paiondata.elide.annotation.Include;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

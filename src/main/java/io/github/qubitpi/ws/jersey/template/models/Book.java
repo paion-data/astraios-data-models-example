@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qubitpi.ws.jersey.template.models;
+package io.github.qubitpi.ws.jersey.template.models;
 
 import com.yahoo.elide.annotation.Include;
 

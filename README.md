@@ -14,12 +14,17 @@ pipeline. See [Jersey Webservice Template documentation][JWT CI/CD chain] on how
 
 To install the data models locally, run:
 
+> [!TIP]
+>
+> The local version will always be `1.0-SNAPSHOT/` under
+> `~/.m2/repository/io/github/qubitpi/jersey-webservice-template-jpa-data-models/`
+
 ```console
 mvn clean install
 ```
 
 The models in this example has also been published to [Maven Central][Maven Central Version URL] and can be imported
-with the following way for testing purposes
+by specifying a semantic version
 
 ```xml
 <dependency>

@@ -23,11 +23,12 @@ name: Data Model CI/CD
     types: [jersey-webservice-template-jpa-elide-changes]
 
 jobs:
+  yml-md-style-and-link-checks:
+    uses: QubitPi/hashicorp-aws/.github/workflows/yml-md-style-and-link-checks.yml@master
+
   tests:
     name: Testing install
-    outputs:
-      outcome: ${{ job.status }}
-    continue-on-error: true
+    needs: yml-md-style-and-link-checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -35,16 +36,6 @@ jobs:
         uses: QubitPi/hashicorp-aws/.github/actions/jdk-setup@master
       - name: Test
         run: mvn -B clean install
-
-  slack-notification-pr:
-    name: Send Slack Notification
-    if: ${{ (github.event_name == 'pull_request') && always() }}
-    needs: tests
-    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
-    with:
-      job-status: ${{ needs.tests.outputs.outcome }}
-    secrets:
-      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   release:
     name: Release to Maven Central
@@ -65,9 +56,6 @@ jobs:
 
   triggering:
     name: Triggering data model acceptance tests CI/CD
-    outputs:
-      outcome: ${{ job.status }}
-    continue-on-error: true
     needs: release
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
@@ -78,13 +66,3 @@ jobs:
           token: ${{ secrets.JWT_DOWNSTREAM_CICD_TRIGGER_TOKEN }}
           repository: QubitPi/jersey-webservice-template-jpa-data-models-acceptance-tests
           event-type: jersey-webservice-template-jpa-data-model-changes
-
-  slack-notification-master-commit:
-    name: Send Slack Notification
-    if: ${{ (github.ref == 'refs/heads/master') && always() }}
-    needs: triggering
-    uses: QubitPi/hashicorp-aws/.github/workflows/slack-notification.yml@master
-    with:
-      job-status: ${{ needs.triggering.outputs.outcome }}
-    secrets:
-      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -35,23 +35,10 @@
     </scm>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <checkstyle.skip>false</checkstyle.skip>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-
-        <version.maven.checkstyle.plugin>3.1.2</version.maven.checkstyle.plugin>
-        <checkstyle.skip>false</checkstyle.skip>
-        <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
-        <checkstyle.suppressions.location>checkstyle-suppressions.xml</checkstyle.suppressions.location>
-        <checkstyle.version>8.30</checkstyle.version>
-        <checkstyle.resourceIncludes>**/*.properties*</checkstyle.resourceIncludes>
-
-        <version.maven.compiler.plugin>3.7.0</version.maven.compiler.plugin>
-        <version.maven.javadoc.plugin>3.5.0</version.maven.javadoc.plugin>
-        <version.maven.surefire.plugin>3.0.0-M5</version.maven.surefire.plugin>
-        <version.maven.surefire.report.plugin>${version.maven.surefire.plugin}</version.maven.surefire.report.plugin>
-        <version.maven.failsafe.plugin>3.0.0-M4</version.maven.failsafe.plugin>
-        <version.maven.jar.plugin>3.1.1</version.maven.jar.plugin>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -78,7 +65,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.maven.compiler.plugin}</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -121,23 +108,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${version.maven.checkstyle.plugin}</version>
+                <version>3.3.1</version>
                 <dependencies>
                     <!-- override default checkstyle version -->
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
+                        <version>10.14.2</version>
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <suppressionsLocation>${checkstyle.suppressions.location}</suppressionsLocation>
-                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-                    <configLocation>${checkstyle.config.location}</configLocation>
-                    <includes>**\/*.java,**\/*.groovy</includes>
-                    <resourceIncludes>**/*.properties,**/*.sample</resourceIncludes>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <includes>**\/*.java</includes>
+                    <failsOnError>true</failsOnError>
                     <consoleOutput>true</consoleOutput>
+                    <configLocation>checkstyle.xml</configLocation>
                 </configuration>
                 <executions>
                     <execution>

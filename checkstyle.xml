@@ -140,7 +140,7 @@
         <module name="JavadocMethod">
             <property name="allowedAnnotations" value="Override"/>
             <property name="validateThrows" value="true"/>
-            <property name="scope" value="anoninner"/>
+            <property name="accessModifiers" value="public, protected, package, private"/>
             <property name="allowMissingParamTags" value="false"/>
             <property name="allowMissingReturnTag" value="false"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
@@ -387,7 +387,7 @@
     <!-- Headers -->
     <module name="RegexpHeader">
         <property name="header" value="/*\n * Copyright 20[0-2][0-9],? Jiaqi Liu"/>
-        <property name="fileExtensions" value="java,groovy,g4" />
+        <property name="fileExtensions" value="java,groovy" />
         <property name="severity" value="error"/>
     </module>
 

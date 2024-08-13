@@ -21,8 +21,8 @@ name: CI/CD
       - master
 
 jobs:
-#  yml-md-style-and-link-checks:
-#    uses: paion-data/immutable-infrastructure-as-a-service/.github/workflows/yml-md-style-and-link-checks.yml@master
+  yml-md-style-and-link-checks:
+    uses: paion-data/immutable-infrastructure-as-a-service/.github/workflows/yml-md-style-and-link-checks.yml@master
 
   tests:
     name: Test build

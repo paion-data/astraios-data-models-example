@@ -16,7 +16,7 @@ To install the data models locally, run:
 
 > [!TIP]
 >
-> The local version will always be `1.0-SNAPSHOT/` under
+> The local version will always be `1.0-SNAPSHOT` under
 > `~/.m2/repository/io/github/qubitpi/jersey-webservice-template-jpa-data-models/`
 
 ```console

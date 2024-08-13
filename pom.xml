@@ -6,7 +6,7 @@
 
     <groupId>io.github.qubitpi</groupId>
     <artifactId>jersey-webservice-template-jpa-data-models</artifactId>
-    <version>1.0.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <name>jersey-webservice-template-jpa-data-models</name>
     <packaging>jar</packaging>

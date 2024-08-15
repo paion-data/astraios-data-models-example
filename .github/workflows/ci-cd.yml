@@ -37,6 +37,28 @@ jobs:
       - name: Test
         run: mvn -B clean install
 
+  javadoc:
+    name: Deploy Javadoc to GitHub Pages
+    needs: tests
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: QubitPi/hashicorp-aws/.github/actions/jdk-setup@master
+      - name: Build doc
+        run: mvn -B clean install
+      - name: Load CNAME
+        run: echo jpa-model.qubitpi.org > target/apidocs/CNAME
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/apidocs/
+          enable_jekyll: false
+          user_name: QubitPi
+          user_email: jack20220723@gmail.com
+
   release:
     name: Release to Maven Central
     needs: tests

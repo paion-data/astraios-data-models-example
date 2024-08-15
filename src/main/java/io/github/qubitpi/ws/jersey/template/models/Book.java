@@ -24,7 +24,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * A test entity.
+ * An example JPA entity that describes a book.
  */
 @Entity
 @Table(name = "Book")
@@ -33,8 +33,6 @@ public class Book {
 
     /**
      * Surrogate key.
-     *
-     * The surrogate key
      */
     @Id
     @GeneratedValue

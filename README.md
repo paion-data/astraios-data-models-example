@@ -58,7 +58,7 @@ The use and distribution terms for [jersey-webservice-template-jpa-data-models] 
 [GitHub Workflow Status URL]: https://github.com/QubitPi/jersey-webservice-template-jpa-data-models/actions/workflows/ci-cd.yml
 
 [Javadoc Badge]: https://img.shields.io/badge/Javadoc-000000.svg?style=for-the-badge&logo=openjdk&logoColor=white
-[Javadoc URL]: http://jpa-model.qubitpi.org/
+[Javadoc URL]: https://jpa-model.qubitpi.org/
 [Java Version Badge]: https://img.shields.io/badge/Java-17-brightgreen?style=for-the-badge&logo=OpenJDK&logoColor=white
 [jersey-webservice-template-jpa-data-models]: https://github.com/QubitPi/jersey-webservice-template-jpa-data-models
 [JPA Elide]: https://qubitpi.github.io/jersey-webservice-template/docs/crud/elide/data-model

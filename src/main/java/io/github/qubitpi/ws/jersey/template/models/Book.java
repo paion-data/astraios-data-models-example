@@ -16,6 +16,7 @@
 package io.github.qubitpi.ws.jersey.template.models;
 
 import com.yahoo.elide.annotation.Include;
+import com.yahoo.elide.graphql.annotation.GraphQLDescription;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,13 +33,17 @@ public class Book {
 
     /**
      * Surrogate key.
+     *
+     * The surrogate key
      */
     @Id
     @GeneratedValue
+    @GraphQLDescription("The surrogate/primary key of this book in database")
     public long id;
 
     /**
      * Attribute.
      */
+    @GraphQLDescription("The book title")
     public String title = "";
 }

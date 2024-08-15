@@ -50,7 +50,12 @@
         <dependency>
             <groupId>com.yahoo.elide</groupId>
             <artifactId>elide-core</artifactId>
-            <version>7.0.0-pr6</version>
+            <version>7.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yahoo.elide</groupId>
+            <artifactId>elide-graphql</artifactId>
+            <version>7.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.orm</groupId>

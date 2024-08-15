@@ -53,9 +53,9 @@
             <version>7.1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.yahoo.elide</groupId>
-            <artifactId>elide-graphql</artifactId>
-            <version>7.1.0</version>
+            <groupId>io.github.graphql-java</groupId>
+            <artifactId>graphql-java-annotations</artifactId>
+            <version>21.5</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.orm</groupId>

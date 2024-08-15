@@ -16,8 +16,8 @@
 package io.github.qubitpi.ws.jersey.template.models;
 
 import com.yahoo.elide.annotation.Include;
-import com.yahoo.elide.graphql.annotation.GraphQLDescription;
 
+import graphql.annotations.annotationTypes.GraphQLDescription;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
